@@ -69,8 +69,8 @@ class OptimizerRGDN(Module):
             #     self.GradScaler.apply(weights_init)
             # if(self.use_grad_adj):
             #     self.GradAdj.apply(weights_init)
-                
-         
+
+
     def forward(self, y, k, kt):
         # init x
         xcurrent = y
@@ -80,6 +80,7 @@ class OptimizerRGDN(Module):
         output_list = []
         # optimization init
         for i in range(self.num_steps):
+            # print(i)
             ## single step operation
             grad_loss = self.grad_datafitting_cal(xcurrent, y, k, kt)
 

@@ -10,19 +10,18 @@ class ToTensor(object):
         y, k, kt, x_gt = sample['y'], sample['k'], sample['kt'], sample['x_gt']
         img_ch_num = len(y.shape)
         if img_ch_num == 2:
-            x0 = y
-            x_gt = x_gt
+            # x0 = y
+            # x_gt = x_gt
             y = y
         elif img_ch_num == 3:
             x0 = y
-            x0 = x0.transpose(2, 0, 1)
-            x_gt = x_gt.transpose((2, 0, 1))
+            # x0 = x0.transpose(2, 0, 1)
+            # x_gt = x_gt.transpose((2, 0, 1))
             y = y.transpose((2, 0, 1))
 
-        return torch.from_numpy(y).float(), torch.from_numpy(x_gt).float(),\
+        return torch.from_numpy(y).float(), \
             torch.from_numpy(k.reshape(1, k.shape[0], k.shape[1])).float(), \
-            torch.from_numpy(kt.reshape(1, k.shape[0], k.shape[1])).float(), \
-            torch.from_numpy(x0).float()
+            torch.from_numpy(kt.reshape(1, k.shape[0], k.shape[1])).float()
 
 
 class BlurryImageDataset(Dataset):
