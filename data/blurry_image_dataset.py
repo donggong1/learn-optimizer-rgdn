@@ -3,15 +3,9 @@ import torch
 import os
 import scipy.io as sio
 from torch.utils.data import Dataset
-import numpy as np
-# from .make_kernel import kernel_sim_spline
-from skimage.io import imread
-from sklearn.feature_extraction import image
 
 
 class ToTensor(object):
-    """Convert ndarrays in sample to Tensors."""
-
     def __call__(self, sample):
         y, k, kt, x_gt = sample['y'], sample['k'], sample['kt'], sample['x_gt']
         img_ch_num = len(y.shape)
@@ -33,22 +27,20 @@ class ToTensor(object):
 
 class BlurryImageDataset(Dataset):
     """Blur image dataset"""
-
-    def __init__(self, root_dir, use_cuda=False, transform=None):
+    def __init__(self, root_dir, transform=None):
         self.root_dir = root_dir
         self.transform = transform
         self.file_name_list = [
             name for name in os.listdir(self.root_dir)
-            if os.path.isfile(os.path.join(self.root_dir, name))
+            if os.path.isfile(os.path.join(self.root_dir, name)) and name.endswith('.mat')
         ]
+        print(self.file_name_list)
         self.file_name_list.sort()
-        self.use_cuda = use_cuda
         self.TensorConverter = ToTensor()
-        # self.img_type = img_type
 
     def __len__(self):
         return len([name for name in os.listdir(self.root_dir) \
-                    if os.path.isfile(os.path.join(self.root_dir, name))])
+                    if os.path.isfile(os.path.join(self.root_dir, name)) and name.endswith('.mat') ])
 
     def __getitem__(self, idx):
         """get .mat file"""
@@ -57,4 +49,4 @@ class BlurryImageDataset(Dataset):
         if self.transform:
             sample = self.transform(sample)
 
-        return self.TensorConverter(sample)
+        return self.TensorConverter(sample), mat_name
