@@ -61,6 +61,7 @@ class Options():
         return parser
 
     def print_options(self, opt):
+        # This function is adapted from 'cycleGAN' project.
         message = ''
         message += '----------------- Options ---------------\n'
         for k, v in sorted(vars(opt).items()):
