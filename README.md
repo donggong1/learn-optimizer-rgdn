@@ -10,4 +10,8 @@ Dong Gong, Zhen Zhang, Qinfeng Shi, Anton van den Hengel, Chunhua Shen, Yanning 
 + Pretrained model: `./rgdn.tr`.
 + [Testing Examples](https://drive.google.com/file/d/1N8s4v0DsDB02vZMH77Z21AejvW2XrjM2/view?usp=sharing), with real and synthetic images. 
 
+## Requirements
++ Python 3
++ PyTorch 1.1.0 (recommended version)
+
 ...
