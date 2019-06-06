@@ -14,7 +14,7 @@ class ToTensor(object):
             # x_gt = x_gt
             y = y
         elif img_ch_num == 3:
-            x0 = y
+            # x0 = y
             # x0 = x0.transpose(2, 0, 1)
             # x_gt = x_gt.transpose((2, 0, 1))
             y = y.transpose((2, 0, 1))
@@ -33,7 +33,7 @@ class BlurryImageDataset(Dataset):
             name for name in os.listdir(self.root_dir)
             if os.path.isfile(os.path.join(self.root_dir, name)) and name.endswith('.mat')
         ]
-        print(self.file_name_list)
+        # print(self.file_name_list)
         self.file_name_list.sort()
         self.TensorConverter = ToTensor()
 
