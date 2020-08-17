@@ -3,7 +3,7 @@ from scipy.interpolate import splrep, splev
 from scipy.signal import convolve2d
 
 # spline-based blur kernel simulation
-# TODO: adding comments and references
+# Python implementation of the kernel simulation method in "A. Chakrabarti, “A neural approach to blind motion deblurring,” in European Conference on Computer Vision (ECCV), 2016".
 def kernel_sim_spline(psz, mxsz, nc, num):
     k = np.zeros([mxsz, mxsz, num], dtype=np.float32)
     imp = np.zeros([mxsz, mxsz], dtype=np.float32)
